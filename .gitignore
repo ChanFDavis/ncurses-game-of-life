@@ -1,0 +1,6 @@
+# Object and dependency files
+*.o
+*.d
+
+# Generated executable
+gol
