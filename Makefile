@@ -1,12 +1,16 @@
 # Makefile for building the Conway's Game of Life program.
 
+CC=gcc
+CPPFLAGS =
+CFLAGS = -Wall -Werror
+LDFLAGS =
+
+
 SRC_FILES = conway-gol.c gol_world.c
 OBJ_FILES = $(SRC_FILES:.c=.o)
 
-all: build run
-
 build: $(OBJ_FILES)
-	gcc $^ -lncurses -o gol.exe
+	$(CC) $(CPPFLAGS) $(CFLAGS) $^ -lncurses -o gol.exe
 
 %.o: %.c
 	$(CC) -c $<
