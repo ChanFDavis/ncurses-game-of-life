@@ -14,35 +14,25 @@
 #include "gol_world.h"
 
 int main() {
-
    char *ch = '\0';
 
-   /* Provide a seed for the rand() function based on current time in ms*/
-   srand(time(0));
+   srand(time(0)); /* Provide a seed for the rand() function based on current time in ms*/
 
-   /* Initialize window */
-   initscr();
+   initscr(); /* Initialize window */
 
-   /* Make added characters immediately available to the program (disable line buffering) */
-   cbreak();
+   cbreak(); /* Make added characters immediately available to the program (disable line buffering) */
 
-   /* Make polling for keyboard input non-blocking. */
-   nodelay(stdscr, TRUE);
+   nodelay(stdscr, TRUE); /* Make polling for keyboard input non-blocking. */
 
-   /* Don't echo key presses */
-   noecho();
+   noecho(); /* Don't echo key presses */
 
-   /* Don't display cursor */
-   curs_set(FALSE);
+   curs_set(FALSE); /* Don't display cursor */
 
-   /* Clear the window */
-   clear();
+   clear(); /* Clear the window */
 
-   /* Add random cells to the world */
-   init_world(INITIAL_CELLS);
+   init_world(INITIAL_CELLS); /* Add random cells to the world */
 
-   /* Draw our world in the console window */
-   draw_world();
+   draw_world(); /* Draw our world in the console window */
 
    /* Print some instructions for the user */
    // mvprintw(WORLD_HEIGHT + 1, 0, "Press the SPACE key to start the simulation! Press CTRL+C to end.");
@@ -60,8 +50,7 @@ int main() {
       usleep(DELAY);
    }
 
-   /* Reset the console back to 'normal' */
-   endwin();
+   endwin(); /* Reset the console back to 'normal' */
 
    return 0;
 }

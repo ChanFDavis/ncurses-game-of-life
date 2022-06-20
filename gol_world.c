@@ -15,7 +15,7 @@
 */
 static int update_cell(int row, int col);
 
-/* Returns the number of neighbors a given cell has */
+/* Returns the number of neighbors a given cell has. */
 static int get_neighbors(int row, int col);
 
 int old_world[WORLD_HEIGHT][WORLD_WIDTH]; /* Current state of the world */
