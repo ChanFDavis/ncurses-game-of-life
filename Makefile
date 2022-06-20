@@ -5,13 +5,16 @@ OBJ_FILES = $(SRC_FILES:.c=.o)
 
 all: build run
 
-build: $(SRC_FILES)
-	gcc $^ -lncurses -o gol
+build: $(OBJ_FILES)
+	gcc $^ -lncurses -o gol.exe
 
-run: gol
-	./gol
+%.o: %.c
+	$(CC) -c $<
+
+run: gol.exe
+	./gol.exe
 
 .PHONY: clean
 
 clean:
-	rm -f $(OBJ_FILES)
+	rm -f $(OBJ_FILES) gol.exe
