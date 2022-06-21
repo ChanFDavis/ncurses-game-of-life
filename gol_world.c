@@ -9,6 +9,7 @@
 /* The structure representing an individual cell in the world. */
 typedef struct {
    bool alive;
+   unsigned int age;
 } cell_t;
 
 
@@ -23,14 +24,6 @@ void init_world() {
    int j = 0;
    int randRow = 0;
    int randCol = 0;
-
-   /* Intialize all cells to dead (spooky!) */
-   for (i = 0; i < WORLD_HEIGHT; i++) {
-      for (j = 0; j < WORLD_WIDTH; j++) {
-         old_world[i][j].alive = FALSE;
-         new_world[i][j].alive = FALSE;
-      }
-   }
 
    /* Add random living cells to the world */
    for (i = 0; i < INITIAL_CELLS; i++) {
