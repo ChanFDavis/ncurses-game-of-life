@@ -78,11 +78,14 @@ static void update_cell(int row, int col) {
    if (old_world[row][col].alive == TRUE) {
       if (neighbors == 2 || neighbors == 3) {
          new_world[row][col].alive = TRUE;
+         new_world[row][col].age += 1;
       } else {
          new_world[row][col].alive = FALSE;
+         new_world[row][col].age = 0;
       }
    } else {
       new_world[row][col].alive = (neighbors == 3);
+      new_world[row][col].age = 0;
    }
 }
 
