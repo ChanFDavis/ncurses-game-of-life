@@ -6,7 +6,7 @@
 #define WORLD_WIDTH 60
 
 /* Number of randomly placed cells you want in the beginning */
-#define INITIAL_CELLS 2
+#define INITIAL_CELLS 250
 
 /* Delay for the animation in microseconds */
 #define DELAY 60000
@@ -14,5 +14,15 @@
 /* The characters we want to use to represent our cell stats */
 #define LIVE_CELL '#'
 #define DEAD_CELL ' '
+
+enum {
+    WHITE_BLACK = 1,
+    MAGENTA_BLACK,
+    RED_BLACK,
+    YELLOW_BLACK,
+    GREEN_BLACK,
+    CYAN_BLACK,
+    BLUE_BLACK,
+} color_pairs;
 
 #endif /* CONWAY_CFG_H */

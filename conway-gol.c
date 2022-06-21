@@ -13,16 +13,31 @@
 #include "conway_cfg.h"
 #include "gol_world.h"
 
-int main() {
-   char *ch = '\0';
+static void init_color_pairs(void);
 
+int main(void) {
    srand(time(0)); /* Provide a seed for the rand() function based on current time in ms*/
 
    initscr(); /* Initialize window */
 
    cbreak(); /* Make added characters immediately available to the program (disable line buffering) */
 
+   start_color(); /* Mmmm... color... */
+
+   init_color_pairs();
+
+   if(!has_colors())
+	{	
+      endwin();
+      printf("Your terminal does not support color! ( Lame :( )\n");
+      exit(1);
+	}
+
+   #ifdef DEBUG
+   nodelay(stdscr, FALSE); /* Make polling for keyboard input non-blocking. */
+   #else
    nodelay(stdscr, TRUE); /* Make polling for keyboard input non-blocking. */
+   #endif
 
    noecho(); /* Don't echo key presses */
 
@@ -30,7 +45,7 @@ int main() {
 
    clear(); /* Clear the window */
 
-   init_world(INITIAL_CELLS); /* Add random cells to the world */
+   init_world(); /* Add random cells to the world */
 
    draw_world(); /* Draw our world in the console window */
 
@@ -45,7 +60,7 @@ int main() {
 
       clear();
       draw_world();
-
+      
       refresh();
       usleep(DELAY);
    }
@@ -53,4 +68,14 @@ int main() {
    endwin(); /* Reset the console back to 'normal' */
 
    return 0;
+}
+
+static void init_color_pairs(void) {
+   init_pair(WHITE_BLACK, COLOR_WHITE, COLOR_BLACK);
+   init_pair(MAGENTA_BLACK, COLOR_MAGENTA, COLOR_BLACK);
+   init_pair(RED_BLACK, COLOR_RED, COLOR_BLACK);
+   init_pair(YELLOW_BLACK, COLOR_YELLOW, COLOR_BLACK);
+   init_pair(GREEN_BLACK, COLOR_GREEN, COLOR_BLACK);
+   init_pair(CYAN_BLACK, COLOR_CYAN, COLOR_BLACK);
+   init_pair(BLUE_BLACK, COLOR_BLUE, COLOR_BLACK);
 }
