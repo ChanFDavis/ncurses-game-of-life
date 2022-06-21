@@ -2,7 +2,7 @@
 #define GOL_WORLD_H
 
 /* Initialize the world with 'num' randomly placed variables */
-void init_world(int num);
+void init_world();
 
 /* Updates the world to the next state. */
 void update_world();

@@ -5,7 +5,6 @@ CPPFLAGS =
 CFLAGS = -Wall -Werror
 LDFLAGS =
 
-
 SRC_FILES = conway-gol.c gol_world.c
 OBJ_FILES = $(SRC_FILES:.c=.o)
 
@@ -22,3 +21,5 @@ run: gol.exe
 
 clean:
 	rm -f $(OBJ_FILES) gol.exe
+
+all: build run

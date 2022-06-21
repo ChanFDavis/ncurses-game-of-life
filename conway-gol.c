@@ -30,7 +30,7 @@ int main() {
 
    clear(); /* Clear the window */
 
-   init_world(INITIAL_CELLS); /* Add random cells to the world */
+   init_world(); /* Add random cells to the world */
 
    draw_world(); /* Draw our world in the console window */
 
@@ -45,7 +45,7 @@ int main() {
 
       clear();
       draw_world();
-
+      
       refresh();
       usleep(DELAY);
    }
