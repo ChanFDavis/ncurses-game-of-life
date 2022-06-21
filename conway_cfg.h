@@ -6,7 +6,7 @@
 #define WORLD_WIDTH 60
 
 /* Number of randomly placed cells you want in the beginning */
-#define INITIAL_CELLS 100
+#define INITIAL_CELLS 250
 
 /* Delay for the animation in microseconds */
 #define DELAY 60000

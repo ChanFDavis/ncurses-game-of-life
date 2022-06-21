@@ -14,15 +14,17 @@
 #include "gol_world.h"
 
 int main() {
-   char *ch = '\0';
-
    srand(time(0)); /* Provide a seed for the rand() function based on current time in ms*/
 
    initscr(); /* Initialize window */
 
    cbreak(); /* Make added characters immediately available to the program (disable line buffering) */
 
+   #ifdef DEBUG
+   nodelay(stdscr, FALSE); /* Make polling for keyboard input non-blocking. */
+   #else
    nodelay(stdscr, TRUE); /* Make polling for keyboard input non-blocking. */
+   #endif
 
    noecho(); /* Don't echo key presses */
 

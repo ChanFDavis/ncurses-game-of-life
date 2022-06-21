@@ -21,7 +21,6 @@ cell_t new_world[WORLD_HEIGHT][WORLD_WIDTH] = {0}; /* The next generation's worl
 
 void init_world() {
    int i = 0;
-   int j = 0;
    int randRow = 0;
    int randCol = 0;
 
@@ -73,8 +72,6 @@ void update_world() {
  *
  */
 static void update_cell(int row, int col) {
-
-   int retVal = 0;
    int neighbors = get_neighbors(row, col);
 
    /* If cell state is alive, check first three rules. Otherwise, check rule 4. */
