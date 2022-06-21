@@ -16,6 +16,9 @@
 static void init_color_pairs(void);
 
 int main(void) {
+
+   bool end_loop = FALSE;
+
    srand(time(0)); /* Provide a seed for the rand() function based on current time in ms*/
 
    initscr(); /* Initialize window */
@@ -55,7 +58,31 @@ int main(void) {
    refresh();
 
    /* The animation loop */
-   while(getch() != 'q') {
+   while(!end_loop) {
+
+      switch(getch()) {
+         case 'q':
+         case 'Q':
+            end_loop = TRUE;
+            break;
+         case 'b':
+         case 'B':
+            standend();
+            attron(A_BOLD);
+            break;
+         case 'd':
+         case 'D':
+            standend();
+            attron(A_DIM);
+            break;
+         case 'r':
+         case 'R':
+            standend();
+            break;
+         default:
+            break;
+      }
+
       update_world();
 
       clear();
