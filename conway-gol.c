@@ -27,7 +27,7 @@ int main(void) {
    init_color_pairs();
 
    if(!has_colors())
-	{	
+	{
       endwin();
       printf("Your terminal does not support color! ( Lame :( )\n");
       exit(1);
@@ -60,7 +60,7 @@ int main(void) {
 
       clear();
       draw_world();
-      
+
       refresh();
       usleep(DELAY);
    }

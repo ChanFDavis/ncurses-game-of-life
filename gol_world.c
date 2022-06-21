@@ -50,7 +50,7 @@ void draw_world() {
 
 static int age_color(int age) {
    int color = 0;
-   
+
    switch(age) {
       case 0:
          color = WHITE_BLACK;
