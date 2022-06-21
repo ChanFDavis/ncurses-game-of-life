@@ -14,6 +14,7 @@ typedef struct {
 
 static void update_cell(int row, int col);
 static int get_neighbors(int row, int col);
+static int age_color(int age);
 
 cell_t old_world[WORLD_HEIGHT][WORLD_WIDTH] = {0}; /* Current state of the world */
 cell_t new_world[WORLD_HEIGHT][WORLD_WIDTH] = {0}; /* The next generation's world state */
@@ -40,9 +41,41 @@ void draw_world() {
 
    for (i = 0; i < WORLD_HEIGHT; i++) {
       for (j = 0; j < WORLD_WIDTH; j++) {
+         attron(COLOR_PAIR(age_color(new_world[i][j].age)));
          mvaddch(i, j, (new_world[i][j].alive == TRUE)? LIVE_CELL : DEAD_CELL);
+         attroff(COLOR_PAIR(age_color(new_world[i][j].age)));
       }
    }
+}
+
+static int age_color(int age) {
+   int color = 0;
+   
+   switch(age) {
+      case 0:
+         color = WHITE_BLACK;
+         break;
+      case 1:
+         color = MAGENTA_BLACK;
+         break;
+      case 2:
+         color = RED_BLACK;
+         break;
+      case 3:
+         color = YELLOW_BLACK;
+         break;
+      case 4:
+         color = GREEN_BLACK;
+         break;
+      case 5:
+         color = CYAN_BLACK;
+         break;
+      default:
+         color = BLUE_BLACK;
+         break;
+   }
+
+   return color;
 }
 
 /* Updates the world to the next state. */

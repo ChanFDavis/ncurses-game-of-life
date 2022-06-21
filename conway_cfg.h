@@ -15,4 +15,14 @@
 #define LIVE_CELL '#'
 #define DEAD_CELL ' '
 
+enum {
+    WHITE_BLACK = 1,
+    MAGENTA_BLACK,
+    RED_BLACK,
+    YELLOW_BLACK,
+    GREEN_BLACK,
+    CYAN_BLACK,
+    BLUE_BLACK,
+} color_pairs;
+
 #endif /* CONWAY_CFG_H */
