@@ -12,13 +12,13 @@ typedef struct {
    unsigned int age;
 } cell_t;
 
-
 static void update_cell(int row, int col);
 static int get_neighbors(int row, int col);
 
 cell_t old_world[WORLD_HEIGHT][WORLD_WIDTH] = {0}; /* Current state of the world */
 cell_t new_world[WORLD_HEIGHT][WORLD_WIDTH] = {0}; /* The next generation's world state */
 
+/* Initialize the world with randomly placed living cells. */
 void init_world() {
    int i = 0;
    int randRow = 0;
@@ -33,6 +33,7 @@ void init_world() {
    }
 }
 
+/* Draws the world. */
 void draw_world() {
    int i = 0;
    int j = 0;
@@ -44,6 +45,7 @@ void draw_world() {
    }
 }
 
+/* Updates the world to the next state. */
 void update_world() {
    int i = 0;
    int j = 0;
@@ -69,7 +71,6 @@ void update_world() {
  *  	2. Any live cell with two or three live neighbors lives on to the next generation.
  * 	3. Any live cell with more than three live neighbors dies, as if by overpopulation.
  * 	4. Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
- *
  */
 static void update_cell(int row, int col) {
    int neighbors = get_neighbors(row, col);
@@ -102,32 +103,32 @@ static int get_neighbors(int row, int col) {
 
          /* Wrap the row value */
          switch (i) {
-               case -1:
-                  tempI = WORLD_HEIGHT - 1;
-                  break;
-               case WORLD_HEIGHT:
-                  tempI = 0;
-                  break;
-               default:
-                  tempI = i;
-                  break;
+            case -1:
+               tempI = WORLD_HEIGHT - 1;
+               break;
+            case WORLD_HEIGHT:
+               tempI = 0;
+               break;
+            default:
+               tempI = i;
+               break;
          }
 
          /* Wrap the colum value */
          switch (j) {
-               case -1:
-                  tempJ = WORLD_WIDTH - 1;
-                  break;
-               case WORLD_WIDTH:
-                  tempJ = 0;
-                  break;
-               default:
-                  tempJ = j;
-                  break;
+            case -1:
+               tempJ = WORLD_WIDTH - 1;
+               break;
+            case WORLD_WIDTH:
+               tempJ = 0;
+               break;
+            default:
+               tempJ = j;
+               break;
          }
 
          if (!(tempI == row && tempJ == col)) {
-               neighbors += (old_world[tempI][tempJ].alive == TRUE);
+            neighbors += (old_world[tempI][tempJ].alive == TRUE);
          }
       }
    }
