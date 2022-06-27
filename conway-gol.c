@@ -79,6 +79,16 @@ int main(void) {
          case 'R':
             standend();
             break;
+         case 's':
+         case 'S':
+            standend();
+            attron(A_STANDOUT);
+            break;
+         case 'e':
+         case 'E':
+            standend();
+            attron(A_REVERSE);
+            break;
          default:
             break;
       }
