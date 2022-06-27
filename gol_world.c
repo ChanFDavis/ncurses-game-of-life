@@ -1,4 +1,4 @@
-#include <curses.h>
+#include <ncurses.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
@@ -6,6 +6,7 @@
 #include "conway_cfg.h"
 #include "gol_world.h"
 
+/* Macro to get the size of the given array, 'x'. */
 #define ARR_SIZE(x) (sizeof(x) / sizeof(x[0]))
 
 /* The structure representing an individual cell in the world. */
@@ -48,7 +49,7 @@ cell_t old_world[WORLD_HEIGHT][WORLD_WIDTH] = {0}; /* Current state of the world
 cell_t new_world[WORLD_HEIGHT][WORLD_WIDTH] = {0}; /* The next generation's world state */
 
 /* Initialize the world with randomly placed living cells. */
-void init_world() {
+void init_world(void) {
    int i = 0;
    int randRow = 0;
    int randCol = 0;
@@ -63,7 +64,7 @@ void init_world() {
 }
 
 /* Draws the world. */
-void draw_world() {
+void draw_world(void) {
    int i = 0;
    int j = 0;
    unsigned int attrs = 0u;
@@ -85,7 +86,7 @@ static unsigned int age_cell(unsigned int age) {
    /* Provide a finite end to the colors possible. */
    if (age < arr_size - 1)
       return cell_age_arr[age];
-   
+
    return cell_age_arr[arr_size - 1];
 }
 

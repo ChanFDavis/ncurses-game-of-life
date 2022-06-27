@@ -3,7 +3,7 @@
 *.d
 
 # Generated executable
-conway-gol
+conway_gol
 
 # txt files
 *.txt
