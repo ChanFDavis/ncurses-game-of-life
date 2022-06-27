@@ -18,6 +18,7 @@ static void init_color_pairs(void);
 int main(void) {
 
    bool end_loop = FALSE;
+   bool paused = FALSE;
 
    srand(time(0)); /* Provide a seed for the rand() function based on current time in ms*/
 
@@ -89,11 +90,17 @@ int main(void) {
             standend();
             attron(A_REVERSE);
             break;
+         case 'p':
+         case 'P':
+            paused = !paused; /* Toggle pause on and off. */
+            break;
          default:
             break;
       }
 
-      update_world();
+      if (!paused) {
+         update_world();
+      }
 
       clear();
       draw_world();
