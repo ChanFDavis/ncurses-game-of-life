@@ -87,38 +87,6 @@ static unsigned int age_cell(unsigned int age) {
       return cell_age_arr[age];
    
    return cell_age_arr[arr_size - 1];
-   /* TODO: Clean this up with some sort of data structure. */
-
-   // unsigned int flags = 0;
-
-   // switch(age) {
-   //    case 0:
-   //       flags |= COLOR_PAIR(BLACK_BLACK) | A_BOLD;
-   //       break;
-   //    case 1:
-   //       flags |= COLOR_PAIR(WHITE_BLACK);
-   //       break;
-   //    case 2:
-   //       flags |= COLOR_PAIR(MAGENTA_BLACK);
-   //       break;
-   //    case 3:
-   //       flags |= COLOR_PAIR(RED_BLACK);
-   //       break;
-   //    case 4:
-   //       flags |= COLOR_PAIR(YELLOW_BLACK);
-   //       break;
-   //    case 5:
-   //       flags |= COLOR_PAIR(GREEN_BLACK);
-   //       break;
-   //    case 6:
-   //       flags |= COLOR_PAIR(CYAN_BLACK);
-   //       break;
-   //    default:
-   //       flags |= COLOR_PAIR(BLUE_BLACK);
-   //       break;
-   // }
-
-   // return flags;
 }
 
 /* Updates the world to the next state. */
