@@ -16,14 +16,16 @@
 #define DEAD_CELL ' '
 
 enum {
-    WHITE_BLK = 1,
-    H_MAGENTA_BLK,
-    MAGENTA_BLK,
-    RED_BLK,
-    YELLOW_BLK,
-    GREEN_BLK,
-    CYAN_BLK,
-    BLUE_BLK,
+    WHITE_BLACK = 1,
+    H_MAGENTA_BLACK,
+    MAGENTA_BLACK,
+    RED_BLACK,
+    YELLOW_BLACK,
+    GREEN_BLACK,
+    CYAN_BLACK,
+    BLUE_BLACK,
+    BLACK_BLACK,
+    NUM_COLOR_PAIRS
 } color_pairs;
 
 #endif /* CONWAY_CFG_H */

@@ -109,6 +109,7 @@ int main(void) {
 
 static void init_color_pairs(void) {
    init_pair(WHITE_BLACK, COLOR_WHITE, COLOR_BLACK);
+   init_pair(BLACK_BLACK, COLOR_BLACK, COLOR_BLACK);
    init_pair(MAGENTA_BLACK, COLOR_MAGENTA, COLOR_BLACK);
    init_pair(RED_BLACK, COLOR_RED, COLOR_BLACK);
    init_pair(YELLOW_BLACK, COLOR_YELLOW, COLOR_BLACK);

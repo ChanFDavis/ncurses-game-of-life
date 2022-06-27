@@ -14,7 +14,7 @@ typedef struct {
 
 static void update_cell(int row, int col);
 static int get_neighbors(int row, int col);
-static int age_cell(int age);
+static unsigned int age_cell(unsigned int age);
 
 cell_t old_world[WORLD_HEIGHT][WORLD_WIDTH] = {0}; /* Current state of the world */
 cell_t new_world[WORLD_HEIGHT][WORLD_WIDTH] = {0}; /* The next generation's world state */
@@ -38,44 +38,52 @@ void init_world() {
 void draw_world() {
    int i = 0;
    int j = 0;
+   unsigned int attrs = 0u;
 
    for (i = 0; i < WORLD_HEIGHT; i++) {
       for (j = 0; j < WORLD_WIDTH; j++) {
-         attron(COLOR_PAIR(age_cell(new_world[i][j].age)));
+         attrs = age_cell(new_world[i][j].age);
+         attron(attrs);
          mvaddch(i, j, (new_world[i][j].alive == TRUE)? LIVE_CELL : DEAD_CELL);
-         attroff(COLOR_PAIR(age_cell(new_world[i][j].age)));
+         attroff(attrs);
       }
    }
 }
 
-static int age_cell(int age) {
-   int color = 0;
+/* Takes in the age and returns what attribute flags are to be turned on. */
+static unsigned int age_cell(unsigned int age) {
+   /* TODO: Clean this up with some sort of data structure. */
+
+   unsigned int flags = 0;
 
    switch(age) {
       case 0:
-         color = WHITE_BLACK;
+         flags |= COLOR_PAIR(BLACK_BLACK) | A_BOLD;
          break;
       case 1:
-         color = MAGENTA_BLACK;
+         flags |= COLOR_PAIR(WHITE_BLACK);
          break;
       case 2:
-         color = RED_BLACK;
+         flags |= COLOR_PAIR(MAGENTA_BLACK);
          break;
       case 3:
-         color = YELLOW_BLACK;
+         flags |= COLOR_PAIR(RED_BLACK);
          break;
       case 4:
-         color = GREEN_BLACK;
+         flags |= COLOR_PAIR(YELLOW_BLACK);
          break;
       case 5:
-         color = CYAN_BLACK;
+         flags |= COLOR_PAIR(GREEN_BLACK);
+         break;
+      case 6:
+         flags |= COLOR_PAIR(CYAN_BLACK);
          break;
       default:
-         color = BLUE_BLACK;
+         flags |= COLOR_PAIR(BLUE_BLACK);
          break;
    }
 
-   return color;
+   return flags;
 }
 
 /* Updates the world to the next state. */
