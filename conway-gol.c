@@ -13,12 +13,24 @@
 #include "conway_cfg.h"
 #include "gol_world.h"
 
+typedef struct {
+   int x;
+   int y;
+   bool clicked;
+} cursor_stats_t;
+
 static void init_color_pairs(void);
+
+static void move_cursor(cursor_stats_t *cursor, int d_y, int d_x);
 
 int main(void) {
 
    bool end_loop = FALSE;
    bool paused = FALSE;
+   bool cursor_active = FALSE;
+
+   /* Initialize the cursor stats structure. */
+   cursor_stats_t cursor = {0};
 
    srand(time(0)); /* Provide a seed for the rand() function based on current time in ms*/
 
@@ -60,6 +72,9 @@ int main(void) {
 
    /* The animation loop */
    while(!end_loop) {
+      
+      clear();
+      draw_world();
 
       switch(getch()) {
          case 'q':
@@ -94,16 +109,39 @@ int main(void) {
          case 'P':
             paused = !paused; /* Toggle pause on and off. */
             break;
+         case 'c':
+            cursor_active = !cursor_active;
+            break;
+         // case '\033': /* Arrow keys */
+         //    getch(); /* Skip the ']' */
+         //    /* TODO: Do this a much cleaner way. */
+
+         //    switch(getch()) {
+         //       case 'A'
+         //    }
+         case 'i':
+            move_cursor(&cursor, -1, 0);
+            break;
+         case 'k':
+            move_cursor(&cursor, 1, 0);
+            break;
+         case 'j':
+            move_cursor(&cursor, 0, -1);
+            break;
+         case 'l':
+            move_cursor(&cursor, 0, 1);
+            break;
          default:
             break;
+      }
+
+      if (cursor_active) {
+         mvaddch(cursor.y, cursor.x, CURSOR);
       }
 
       if (!paused) {
          update_world();
       }
-
-      clear();
-      draw_world();
 
       refresh();
       usleep(DELAY);
@@ -112,6 +150,34 @@ int main(void) {
    endwin(); /* Reset the console back to 'normal' */
 
    return 0;
+}
+
+/* Moves the cursor according to the given differences in the x and y coordinates. */
+static void move_cursor(cursor_stats_t *cursor, int d_y, int d_x) {
+   // /* Holds on to previous state */
+   // static cursor_stats_t tmp = {0};
+
+   int new_y = cursor->y + d_y;
+   int new_x = cursor->x + d_x;
+
+   /* Check the bounds of the coordinates and wrap them. */
+   if (new_y >= WORLD_HEIGHT) {
+      cursor->y = 0;
+   } else if (new_y < 0) {
+      cursor->y = WORLD_HEIGHT - 1;
+   } else {
+      cursor->y = new_y;
+   }
+   
+   if (new_x >= WORLD_WIDTH) {
+      cursor->x = 0;
+   } else if (new_x < 0) {
+      cursor->x = WORLD_WIDTH - 1;
+   } else {
+      cursor->x = new_x;
+   }
+
+   /* TODO: If clicked, place a new cell (age 0) into the world */
 }
 
 static void init_color_pairs(void) {

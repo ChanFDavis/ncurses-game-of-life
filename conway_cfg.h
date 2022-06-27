@@ -12,8 +12,9 @@
 #define DELAY 60000
 
 /* The characters we want to use to represent our cell stats */
-#define LIVE_CELL '#'
-#define DEAD_CELL ' '
+#define LIVE_CELL   '#'
+#define DEAD_CELL   ' '
+#define CURSOR      'o'
 
 enum {
     WHITE_BLACK = 1,
