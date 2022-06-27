@@ -28,4 +28,6 @@ enum {
     NUM_COLOR_PAIRS
 } color_pairs;
 
+
+
 #endif /* CONWAY_CFG_H */

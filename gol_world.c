@@ -6,11 +6,39 @@
 #include "conway_cfg.h"
 #include "gol_world.h"
 
+#define ARR_SIZE(x) (sizeof(x) / sizeof(x[0]))
+
 /* The structure representing an individual cell in the world. */
 typedef struct {
    bool alive;
    unsigned int age;
 } cell_t;
+
+/* Different cell colors according to cell age. */
+static unsigned int cell_age_arr[] = {
+   COLOR_PAIR(BLACK_BLACK)|A_BOLD,
+   COLOR_PAIR(WHITE_BLACK)|A_DIM,
+   COLOR_PAIR(WHITE_BLACK),
+   COLOR_PAIR(WHITE_BLACK)|A_BOLD,
+   COLOR_PAIR(MAGENTA_BLACK)|A_BOLD,
+   COLOR_PAIR(MAGENTA_BLACK),
+   COLOR_PAIR(MAGENTA_BLACK)|A_DIM,
+   COLOR_PAIR(RED_BLACK)|A_DIM,
+   COLOR_PAIR(RED_BLACK),
+   COLOR_PAIR(RED_BLACK)|A_BOLD,
+   COLOR_PAIR(YELLOW_BLACK),
+   COLOR_PAIR(YELLOW_BLACK)|A_BOLD,
+   COLOR_PAIR(YELLOW_BLACK)|A_DIM,
+   COLOR_PAIR(GREEN_BLACK),
+   COLOR_PAIR(GREEN_BLACK)|A_DIM,
+   COLOR_PAIR(GREEN_BLACK)|A_BOLD,
+   COLOR_PAIR(CYAN_BLACK)|A_BOLD,
+   COLOR_PAIR(CYAN_BLACK),
+   COLOR_PAIR(CYAN_BLACK)|A_DIM,
+   COLOR_PAIR(BLUE_BLACK)|A_BOLD,
+   COLOR_PAIR(BLUE_BLACK),
+   COLOR_PAIR(BLUE_BLACK)|A_DIM
+};
 
 static void update_cell(int row, int col);
 static int get_neighbors(int row, int col);
@@ -52,38 +80,45 @@ void draw_world() {
 
 /* Takes in the age and returns what attribute flags are to be turned on. */
 static unsigned int age_cell(unsigned int age) {
+
+   int arr_size = ARR_SIZE(cell_age_arr);
+   /* Provide a finite end to the colors possible. */
+   if (age < arr_size - 1)
+      return cell_age_arr[age];
+   
+   return cell_age_arr[arr_size - 1];
    /* TODO: Clean this up with some sort of data structure. */
 
-   unsigned int flags = 0;
+   // unsigned int flags = 0;
 
-   switch(age) {
-      case 0:
-         flags |= COLOR_PAIR(BLACK_BLACK) | A_BOLD;
-         break;
-      case 1:
-         flags |= COLOR_PAIR(WHITE_BLACK);
-         break;
-      case 2:
-         flags |= COLOR_PAIR(MAGENTA_BLACK);
-         break;
-      case 3:
-         flags |= COLOR_PAIR(RED_BLACK);
-         break;
-      case 4:
-         flags |= COLOR_PAIR(YELLOW_BLACK);
-         break;
-      case 5:
-         flags |= COLOR_PAIR(GREEN_BLACK);
-         break;
-      case 6:
-         flags |= COLOR_PAIR(CYAN_BLACK);
-         break;
-      default:
-         flags |= COLOR_PAIR(BLUE_BLACK);
-         break;
-   }
+   // switch(age) {
+   //    case 0:
+   //       flags |= COLOR_PAIR(BLACK_BLACK) | A_BOLD;
+   //       break;
+   //    case 1:
+   //       flags |= COLOR_PAIR(WHITE_BLACK);
+   //       break;
+   //    case 2:
+   //       flags |= COLOR_PAIR(MAGENTA_BLACK);
+   //       break;
+   //    case 3:
+   //       flags |= COLOR_PAIR(RED_BLACK);
+   //       break;
+   //    case 4:
+   //       flags |= COLOR_PAIR(YELLOW_BLACK);
+   //       break;
+   //    case 5:
+   //       flags |= COLOR_PAIR(GREEN_BLACK);
+   //       break;
+   //    case 6:
+   //       flags |= COLOR_PAIR(CYAN_BLACK);
+   //       break;
+   //    default:
+   //       flags |= COLOR_PAIR(BLUE_BLACK);
+   //       break;
+   // }
 
-   return flags;
+   // return flags;
 }
 
 /* Updates the world to the next state. */
