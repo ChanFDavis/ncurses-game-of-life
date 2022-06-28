@@ -10,4 +10,7 @@ void update_world();
 /* Draws the world. */
 void draw_world();
 
+/* Inserts a cell into the old world and new world at the given location. */
+void add_cell(int y, int x);
+
 #endif /* GOL_WORLD_H */

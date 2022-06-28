@@ -131,6 +131,10 @@ int main(void) {
          case 'l':
             move_cursor(&cursor, 0, 1);
             break;
+         case ' ':
+            /* Place a new cell into the old and new worlds at the current cursor position. */
+            add_cell(cursor.y, cursor.x);
+            break;
          default:
             break;
       }

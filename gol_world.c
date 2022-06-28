@@ -180,3 +180,10 @@ static int get_neighbors(int row, int col) {
 
    return neighbors;
 }
+
+void add_cell(int row, int col) {
+   old_world[row][col].alive = true;
+   old_world[row][col].age = 0;
+   new_world[row][col].alive = true;
+   new_world[row][col].age = 0;
+}
