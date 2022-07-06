@@ -66,6 +66,7 @@ int main(void) {
    draw_world(); /* Draw our world in the console window */
 
    /* Print some instructions for the user */
+   /* TODO: Add in instructions being drawn on the side for the user. */
    // mvprintw(WORLD_HEIGHT + 1, 0, "Press the SPACE key to start the simulation! Press CTRL+C to end.");
 
    refresh();
@@ -112,13 +113,6 @@ int main(void) {
          case 'c':
             cursor_active = !cursor_active;
             break;
-         // case '\033': /* Arrow keys */
-         //    getch(); /* Skip the ']' */
-         //    /* TODO: Do this a much cleaner way. */
-
-         //    switch(getch()) {
-         //       case 'A'
-         //    }
          case 'i':
             move_cursor(&cursor, -1, 0);
             break;
@@ -158,8 +152,6 @@ int main(void) {
 
 /* Moves the cursor according to the given differences in the x and y coordinates. */
 static void move_cursor(cursor_stats_t *cursor, int d_y, int d_x) {
-   // /* Holds on to previous state */
-   // static cursor_stats_t tmp = {0};
 
    int new_y = cursor->y + d_y;
    int new_x = cursor->x + d_x;
@@ -180,8 +172,6 @@ static void move_cursor(cursor_stats_t *cursor, int d_y, int d_x) {
    } else {
       cursor->x = new_x;
    }
-
-   /* TODO: If clicked, place a new cell (age 0) into the world */
 }
 
 static void init_color_pairs(void) {
