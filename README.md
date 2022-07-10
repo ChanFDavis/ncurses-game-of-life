@@ -17,3 +17,4 @@ Just run `make` in the root folder of the repo. This will create `./conway_gol`
   - Move world drawing to separate window
   - Add a new window to hold instructions
   - Add stats that are displayed
+  - Add 'R' keybinding to "reset world" and generate a new random initial world state.
