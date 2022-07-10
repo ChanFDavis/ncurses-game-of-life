@@ -63,6 +63,22 @@ void init_world(void) {
    }
 }
 
+/* Kills all the cells in the world to get a "blank slate". */
+void clear_world() {
+   int i = 0;
+   int j = 0;
+
+   for (i = 0; i < WORLD_HEIGHT; i++) {
+      for (j = 0; j < WORLD_WIDTH; j++) {
+         old_world[i][j].age = 0;
+         old_world[i][j].alive = false;
+
+         new_world[i][j].age = 0;
+         new_world[i][j].alive = false;
+      }
+   }
+}
+
 /* Draws the world. */
 void draw_world(void) {
    int i = 0;

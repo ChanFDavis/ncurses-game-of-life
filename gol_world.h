@@ -13,4 +13,7 @@ void draw_world();
 /* Inserts a cell into the old world and new world at the given location. */
 void add_cell(int y, int x);
 
+/* Kills all the cells in the world to get a "blank slate". */
+void clear_world();
+
 #endif /* GOL_WORLD_H */

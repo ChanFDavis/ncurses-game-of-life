@@ -93,8 +93,9 @@ int main(void) {
             attron(A_DIM);
             break;
          case 'r':
-         case 'R':
-            standend();
+         case 'R': /* Re-initialize the world to a new state. */
+            clear_world();
+            init_world();
             break;
          case 's':
          case 'S':
