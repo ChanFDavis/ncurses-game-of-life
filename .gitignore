@@ -7,3 +7,6 @@ conway_gol
 
 # txt files
 *.txt
+
+# VS Code editor files
+.vscode/
