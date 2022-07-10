@@ -21,4 +21,7 @@ conway_gol: $(OBJ_FILES)
 clean:
 	rm -f $(OBJ_FILES) $(DEP_FILES) conway_gol
 
+run: conway_gol
+	./conway_gol
+
 all: clean run
